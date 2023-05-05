@@ -15,10 +15,10 @@ import java.util.Random;
 @Service
 public class HotelManagementService {
 
-    @Autowired
-    HotelManagementRepository repository;
 
-    public String addHotel(Hotel hotel) {
+    HotelManagementRepository repository = new HotelManagementRepository();
+
+    public String addHotel(Hotel hotel) throws RuntimeException{
         Optional<Hotel> opt = repository.getHotelByName(hotel.getHotelName());
         if(opt.isPresent()) return "FAILURE";
         repository.addHotel(hotel);
